@@ -53,6 +53,8 @@ public class LoginCheckFilter implements Filter{
         }
 
         //4-1、判断登录状态，如果已登录，则直接放行
+//        log.info("employee:"+ request.getSession().getAttribute("employee"));
+//        log.info("user:"+ request.getSession().getAttribute("user"));
         if(request.getSession().getAttribute("employee") != null){
             log.info("用户已登录，用户id为：{}",request.getSession().getAttribute("employee"));
 
@@ -77,7 +79,7 @@ public class LoginCheckFilter implements Filter{
         log.info("用户未登录");
         //5、如果未登录则返回未登录结果，通过输出流方式向客户端页面响应数据
         response.getWriter().write(JSON.toJSONString(R.error("NOTLOGIN")));
-        return;
+
 
     }
 
