@@ -32,6 +32,15 @@ public class LoginCheckFilter implements Filter{
         log.info("拦截到请求：{}",requestURI);
 
         //定义不需要处理的请求路径
+        /**
+
+         需要将Swagger及Knife4j相关的静态资源直接放行，无需登录即可访问，否则我们就需要登录之后，才可以访问接口文档的页面。
+         "/doc.html",
+         "/webjars/**",
+         "/swagger-resources",
+         "/v2/api-docs"
+
+         */
         String[] urls = new String[]{
                 "/employee/login",
                 "/employee/logout",
@@ -39,7 +48,11 @@ public class LoginCheckFilter implements Filter{
                 "/front/**",
                 "/common/**",
                 "/user/sendMsg",
-                "/user/login"
+                "/user/login",
+                "/doc.html",
+                "/webjars/**",
+                "/swagger-resources",
+                "/v2/api-docs"
         };
 
         //2、判断本次请求是否需要处理
